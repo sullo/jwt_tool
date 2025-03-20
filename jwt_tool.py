@@ -1377,10 +1377,10 @@ def scanModePlaybook():
     cprintc("\nLAUNCHING SCAN: JWT Attack Playbook", "magenta")
     origalg = headDict["alg"]
     # No token
-    tmpCookies = config['argvals']['cookies']
+    tmpCookies = config['argvals']['cookies'].replace('%', '%%')
     tmpHeader = config['argvals']['header']
     if config['argvals']['headerloc'] == "cookies":
-        config['argvals']['cookies'] = strip_dict_cookies(config['argvals']['cookies'])
+        config['argvals']['cookies'] = strip_dict_cookies(config['argvals']['cookies'].replace('%', '%%'))
     elif config['argvals']['headerloc'] == "headers":
         config['argvals']['header'] = ""
     config['argvals']['overridesub'] = "true"
@@ -2063,7 +2063,7 @@ if __name__ == '__main__':
     if args.targeturl:
         config['argvals']['targetUrl'] = args.targeturl.replace('%','%%')
     if args.cookies:
-        config['argvals']['cookies'] = args.cookies
+        config['argvals']['cookies'] = args.cookies.replace('%', '%%')
     if args.headers:
         config['argvals']['header'] = str(args.headers)
     if args.dict:
